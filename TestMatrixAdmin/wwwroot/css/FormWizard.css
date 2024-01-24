@@ -1,0 +1,35 @@
+﻿/* CSS Personalizado */
+#contact-options .form-check {
+    margin-top: 15px;
+}
+
+#contact-options .form-check-input {
+    position: static;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.valid-feedback {
+    display: block; /* Cambia a 'none' si quieres ocultarlo inicialmente */
+    color: green;
+}
+
+.btn-primary {
+    background-color: #FFC107; /* Color amarillo, por ejemplo */
+    border-color: #FFC107;
+}
+
+    .btn-primary:hover {
+        background-color: #E0A800; /* Un amarillo más oscuro para el hover */
+        border-color: #E0A800;
+    }
+
+#id-validation-icon {
+    color: green; /* Color para la verificación */
+    display: none; /* Oculto por defecto */
+}
+
+    #id-validation-icon.error {
+        color: red; /* Color para el error */
+    }
+    /*que ellipse tamaño nobr sea my largo*/
