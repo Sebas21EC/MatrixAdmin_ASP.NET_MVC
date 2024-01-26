@@ -38,8 +38,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1hdHJpeEFkbWluXEZvcm1XaXphcmRcRm9ybXNWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/sebas/Escritorio/TestMatrixAdmin/TestMatrixAdmin/Views/Shared/MatrixAdmin/FormWizard/Section1/_NewUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1hdHJpeEFkbWluXEZvcm1XaXphcmRcU2VjdGlvbjFcX05ld1VzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sebas/Escritorio/TestMatrixAdmin/TestMatrixAdmin/Views/Shared/MatrixAdmin/FormWizard/Section1/_RegisteredUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1hdHJpeEFkbWluXEZvcm1XaXphcmRcU2VjdGlvbjFcX1JlZ2lzdGVyZWRVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sebas/Escritorio/TestMatrixAdmin/TestMatrixAdmin/Views/Shared/MatrixAdmin/FormWizard/Section1/_Section1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1hdHJpeEFkbWluXEZvcm1XaXphcmRcU2VjdGlvbjFcX1NlY3Rpb24xLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sebas/Escritorio/TestMatrixAdmin/TestMatrixAdmin/Views/Shared/MatrixAdmin/FormWizard/Section2/_Section2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1hdHJpeEFkbWluXEZvcm1XaXphcmRcU2VjdGlvbjJcX1NlY3Rpb24yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/sebas/Escritorio/TestMatrixAdmin/TestMatrixAdmin/Views/Shared/MatrixAdmin/FormWizard/_FormWizard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1hdHJpeEFkbWluXEZvcm1XaXphcmRcX0Zvcm1XaXphcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sebas/Escritorio/TestMatrixAdmin/TestMatrixAdmin/Views/Shared/MatrixAdmin/FormWizard/_Section3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1hdHJpeEFkbWluXEZvcm1XaXphcmRcX1NlY3Rpb24zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sebas/Escritorio/TestMatrixAdmin/TestMatrixAdmin/Views/Shared/MatrixAdmin/FormWizard/_Section4.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1hdHJpeEFkbWluXEZvcm1XaXphcmRcX1NlY3Rpb240LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sebas/Escritorio/TestMatrixAdmin/TestMatrixAdmin/Views/Shared/MatrixAdmin/_Footer.cshtml]

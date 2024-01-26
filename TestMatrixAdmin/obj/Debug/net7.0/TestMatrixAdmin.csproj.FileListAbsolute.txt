@@ -261,3 +261,4 @@ C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\refin
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestMatrixAdmin.pdb
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestMatrixAdmin.genruntimeconfig.cache
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\ref\TestMatrixAdmin.dll
+C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestMatrixAdmin.sourcelink.json

@@ -1,0 +1,123 @@
+﻿@model TestMatrixAdmin.Models.Section1
+
+<h3>¡Empecemos! Ingresa tus datos</h3>
+
+@* <form asp-action="TuAccion" asp-controller="TuControlador" method="post"> *@
+
+<div class="form-group">
+    <label for="IdNumber" class="control-label">Cédula</label>
+    @Html.TextBoxFor(mbox => mbox.IdNumber, "", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.IdNumber, "", new { @class = "text-danger" })
+
+    @*     <input id="IdNumber" name="IdNumber" type="text" class="form-control required" maxlength="10">
+    *@    <!-- Icono de validación -->
+    <div id="id-validation-icon">
+    </div>
+</div>
+@* </form> *@
+
+
+<div id="new-user" class="mt-4" style="display: none;">
+
+    @await Html.PartialAsync("MatrixAdmin/FormWizard/Section1/_NewUser")
+
+</div>
+
+<div id="registered-user" class="mt-4" style="display: none;">
+
+    @await Html.PartialAsync("MatrixAdmin/FormWizard/Section1/_RegisteredUser")
+
+</div>
+
+
+
+
+
+
+<script>
+
+    $(function () {
+
+
+
+        // Step 1
+        // Validar automáticamente después de ingresar 10 dígitos
+        $('#IdNumber').on('keyup', function () {
+            var idNumber = $(this).val(); // Definir la variable idNumber correctamente
+            var validationIcon = $('#id-validation-icon');
+            validationIcon.removeClass('valid').addClass('error').html('<i class="fas fa-times"></i>').show();
+
+            // Verifica si la longitud del número ingresado es 10
+            if (idNumber.length === 10) {
+                validationIcon.removeClass('error').addClass('valid').html('<i class="fas fa-check"></i>').show();
+
+                enableNextButton(true);
+
+                // Aquí iría la llamada AJAX para verificar si la cédula tiene cuenta
+                // Para este ejemplo, usaremos una lógica simple para simular
+                if (idNumber === "1111111111") {
+                    // Simula una cuenta existente
+                    $('#registered-user').show();
+                    $('#contact-options').show();
+                    $('#new-user').hide();
+                    //limpiar el campo de huella dactilar
+                    $('#fingerprint-input').hide();
+                    $('#fingerprintCode').val('');
+                    // //asignar clase 'required' os campos de contacto
+                    // $('#phone-input').addClass('required');
+                    // $('#email').addClass('required');
+                    // $('#emailConfirm').addClass('required');
+                    // //quitar clase 'required' al campo de huella dactilar
+                    // $('#fingerprintCode').removeClass('required');
+
+                } else {
+                    // Simula que no existe una cuenta y muestra la opción de huella dactilar
+                    $('#registered-user').hide();
+                    $('#new-user').show();
+                    $('#fingerprint-input').show();
+
+                    //limpiar los comaps de contactos
+                    $('#phone-input').hide();
+                    $('#email-inputs').hide();
+                    $('#contact-options').hide();
+                    $('#phone-input').val('');
+                    $('#email').val('');
+                    $('#emailConfirm').val('');
+
+                    // //asignar clase 'required' al campo de huella dactilar
+                    // $('#fingerprintCode').addClass('required');
+                    // //quitar clase 'required' a los campos de contacto
+                    // $('#phone-input').removeClass('required');
+                    // $('#email').removeClass('required');
+                    // $('#emailConfirm').removeClass('required');
+
+                }
+
+            } else {
+                enableNextButton(false);
+
+                // Ocultar ambas opciones si la longitud no es 10
+
+                $('#registered-user').hide();
+                $('#new-user').hide();
+
+                $('#phone-input').val('');
+                $('#email').val('');
+                $('#emailConfirm').val('');
+                $('#fingerprintCode').val('');
+
+                // $('#phone-input').removeClass('required');
+                // $('#email').removeClass('required');
+                // $('#emailConfirm').removeClass('required');
+                // $('#fingerprintCode').removeClass('required');
+
+                validationIcon.removeClass('valid').addClass('error').html('<i class="fas fa-times"></i>').show();
+
+            }
+        });
+
+
+
+    });
+
+</script>

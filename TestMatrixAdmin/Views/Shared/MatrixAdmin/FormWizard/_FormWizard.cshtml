@@ -21,174 +21,13 @@
             <div>
                 <h3>1</h3>
                 <section>
-                    <h3>¡Empecemos! Ingresa tus datos</h3>
 
-                    <div class="form-group">
-                        <label for="IdNumber" class="control-label">Cédula</label>
-                        <input id="IdNumber" name="IdNumber" type="text" class="form-control" maxlength="10">
-                        <!-- Icono de validación -->
-                        <div id="id-validation-icon"></div>
-
-                    </div>
-
-                    <div id="contact-options" class="mt-4" style="display: none;">
-
-                        <!-- Opciones de contacto -->
-                        <label>Celular o correo registrado en el Banco</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="contactOption" id="phoneOption" value="phone">
-                            <label class="form-check-label" for="phoneOption">Celular</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="contactOption" id="emailOption" value="email">
-                            <label class="form-check-label" for="emailOption">Correo electrónico</label>
-                        </div>
-                    </div>
-
-                    <!-- Entrada para teléfono -->
-                    <div id="phone-input" class="mt-4" style="display: none;">
-                        <div class="form-group">
-                            <label for="phoneNumber" class="control-label">Ingresa tu número celular</label>
-                            <input id="phoneNumber" name="phoneNumber" type="text" class="form-control">
-                        </div>
-                    </div>
-
-                    <!-- Entradas para correo electrónico -->
-                    <div id="email-inputs" class="mt-4" style="display: none;">
-                        <div class="form-group">
-                            <label for="email" class="control-label">Ingresa tu correo electrónico</label>
-                            <input id="email" name="email" type="email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="emailConfirm" class="control-label">Confirma tu correo electrónico</label>
-                            <input id="emailConfirm" name="emailConfirm" type="email" class="form-control">
-                        </div>
-                    </div>
-
-
-                    <div id="fingerprint-input" class="mt-4" style="display: none;">
-                        <label for="fingerprintCode" class="control-label">Código dactilar *</label>
-                        <input id="fingerprintCode" name="fingerprintCode" type="text" class="form-control">
-                    </div>
-
-
-                    <!-- Botón de continuar -->
-                    <div class="mt-4">
-                        <button type="button" id="continueBtn" class="btn btn-primary">Continuar</button>
-                    </div>
+                    @await Html.PartialAsync("MatrixAdmin/FormWizard/Section1/_Section1")
 
                 </section>
                 <h3>2</h3>
                 <section>
-                    <!-- Dos checksBox para acepatar los terminos y condiciones, de forma obligatorios -->
-                    <div class="mb-3">
-                        <label>
-                            <input type="checkbox" name="acceptTerms1" class="required" /> Acepto los términos y condiciones
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label>
-                            <input type="checkbox" name="acceptTerms2" class="required" /> Acepto los términos y condiciones
-                        </label>
-                    </div>
-
-
-                    <!-- Radio buttons para seleccionar el país -->
-                    <div class="mb-3">
-                        <label>
-                            <input type="radio" name="country" value="Ecuador" /> Ecuador
-                        </label>
-                        <label>
-                            <input type="radio" name="country" value="Other" /> Otro país
-                        </label>
-                    </div>
-
-                    <!-- Campos adicionales para Ecuador -->
-                    <div id="fields-ecuador" class="additional-fields">
-                        <div id="province-ec-input" class="mt-4" style="display: none;">
-                            <div class="form-group">
-                                <label for="province-ec">Provincia</label>
-                                <select id="province-ec" class="form-control">
-                                </select>
-                            </div>
-                        </div>
-                        <!-- inputs de ciudades de ecuador -->
-                        <div id="cities-ec-input" class="mt-4" style="display: none;">
-                            <div class="form-group">
-                                <label for="city-ec">Ciudad</label>
-                                <select id="city-ec" class="form-control">
-                                    <!-- Las opciones de ciudad se cargarán dinámicamente aquí -->
-                                </select>
-                            </div>
-                        </div>
-                        <!-- inputs de direccion y referencia -->
-                        <div id="address-ec-input" class="mt-4" style="display: none;">
-                            <div class="form-group">
-                                <label for="address-ec">Dirección</label>
-                                <input id="address-ec" name="address-ec" type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <div id="reference-ec-input" class="mt-4" style="display: none;">
-                            <div class="form-group">
-                                <label for="reference-ec">Referencia</label>
-                                <input id="reference-ec" name="reference-ec" type="text" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Campos adicionales para otro pais -->
-                    <div id="fields-other" class="additional-fields">
-                        <div id="country-other-input" class="mt-4" style="display: none;">
-                            <div class="form-group">
-                                <label for="country-other">País</label>
-                                <select id="country-other" class="form-control">
-                                    <!-- Opciones de paises aquí -->
-                                </select>
-                            </div>
-                        </div>
-                        <!-- inputs de identificacion -->
-                        <div id="dni-other-input" class="mt-4" style="display: none;">
-                            <div class="form-group" style="width:49%; padding: 10px;display: inline-block">
-                                <label for="typeId-other">Tio de DNI</label>
-                                <select id="typeId-other" class="form-control">
-                                    <!-- Opciones de identificadores aquí -->
-                                    <option value="Cedula">Cédula</option>
-                                    <option value="Pasaporte">Pasaporte</option>
-                                    <option value="LibretaMilitar">Libreta Militar</option>
-                                </select>
-                            </div>
-                            <div class="form-group" style="width:49%; padding: 10px;display: inline-block">
-                                <label for="numberId-other">Numeración</label>
-                                <input id="numberId-other" name="numberId-other" type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <!-- inputs de ciudad -->
-
-                        <div id="city-other-input" class="mt-4" style="display: none;">
-                            <div class="form-group" style="width:49%; padding: 10px;display: inline-block">
-                                <label for="city-other">Ciudad</label>
-                                <input id="city-other" name="city-other" type="text" class="form-control" />
-                            </div>
-                            <div class="form-check" style="width:49%; padding: 10px;display: inline-block">
-                                <label for="postalCode-other">Código Postal</label>
-                                <input id="postalCode-other" name="postalCode-other" type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <!-- inputs de direccion y referencia -->
-                        <div id="address-other-input" class="mt-4" style="display: none;">
-                            <div class="form-group">
-                                <label for="address-other">Dirección</label>
-                                <input id="address-other" name="address-other" type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <div id="reference-other-input" class="mt-4" style="display: none;">
-                            <div class="form-group">
-                                <label for="reference-other">Referencia</label>
-                                <input id="reference-other" name="reference-other" type="text" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
-
-
+                    @await Html.PartialAsync("MatrixAdmin/FormWizard/Section2/_Section2")
                 </section>
                 <h3>3</h3>
                 <section>
@@ -207,3 +46,9 @@
         </form>
     </div>
 </div>
+
+
+<script>
+
+
+</script>

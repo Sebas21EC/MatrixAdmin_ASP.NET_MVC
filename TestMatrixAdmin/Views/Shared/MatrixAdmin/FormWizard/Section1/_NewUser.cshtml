@@ -1,0 +1,8 @@
+﻿@model TestMatrixAdmin.Models.Section1
+
+<!-- Entrada para código dactilar -->
+<div id="fingerprint-input" class="mt-4">
+    <label for="fingerprintCode" class="control-label">Código dactilar *</label>
+    @* <input id="fingerprintCode" name="fingerprintCode" type="text" class="form-control"> *@
+    @Html.TextBoxFor(mbox => mbox.FingerprintCode, "", new { @class = "form-control required" })
+</div>

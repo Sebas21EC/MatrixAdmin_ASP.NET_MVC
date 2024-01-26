@@ -1,0 +1,358 @@
+﻿ <!-- Dos checksBox para acepatar los terminos y condiciones, de forma obligatorios -->
+<div class="mb-3">
+    <label>
+        <input type="checkbox" name="acceptTerms1" class="required" /> Acepto los términos y condiciones
+    </label>
+</div>
+<div class="mb-3">
+    <label>
+        <input type="checkbox" name="acceptTerms2" class="required" /> Acepto los términos y condiciones
+    </label>
+</div>
+
+
+<!-- Radio buttons para seleccionar el país -->
+<div class="mb-3">
+    <label>
+        <input type="radio" name="country" value="Ecuador" /> Ecuador
+    </label>
+    <label>
+        <input type="radio" name="country" value="Other" /> Otro país
+    </label>
+</div>
+
+<!-- Campos adicionales para Ecuador -->
+<div id="fields-ecuador" class="additional-fields">
+    <div id="province-ec-input" class="mt-4" style="display: none;">
+        <div class="form-group">
+            <label for="province-ec">Provincia</label>
+            <select id="province-ec" class="form-control">
+            </select>
+        </div>
+    </div>
+    <!-- inputs de ciudades de ecuador -->
+    <div id="cities-ec-input" class="mt-4" style="display: none;">
+        <div class="form-group">
+            <label for="city-ec">Ciudad</label>
+            <select id="city-ec" class="form-control">
+                <!-- Las opciones de ciudad se cargarán dinámicamente aquí -->
+            </select>
+        </div>
+    </div>
+    <!-- inputs de direccion y referencia -->
+    <div id="address-ec-input" class="mt-4" style="display: none;">
+        <div class="form-group">
+            <label for="address-ec">Dirección</label>
+            <input id="address-ec" name="address-ec" type="text" class="form-control" />
+        </div>
+    </div>
+    <div id="reference-ec-input" class="mt-4" style="display: none;">
+        <div class="form-group">
+            <label for="reference-ec">Referencia</label>
+            <input id="reference-ec" name="reference-ec" type="text" class="form-control" />
+        </div>
+    </div>
+</div>
+<!-- Campos adicionales para otro pais -->
+<div id="fields-other" class="additional-fields">
+    <div id="country-other-input" class="mt-4" style="display: none;">
+        <div class="form-group">
+            <label for="country-other">País</label>
+            <select id="country-other" class="form-control">
+                <!-- Opciones de paises aquí -->
+            </select>
+        </div>
+    </div>
+    <!-- inputs de identificacion -->
+    <div id="dni-other-input" class="mt-4" style="display: none;">
+        <div class="form-group" style="width:49%; padding: 10px;display: inline-block">
+            <label for="typeId-other">Tio de DNI</label>
+            <select id="typeId-other" class="form-control">
+                <!-- Opciones de identificadores aquí -->
+                <option value="Cedula">Cédula</option>
+                <option value="Pasaporte">Pasaporte</option>
+                <option value="LibretaMilitar">Libreta Militar</option>
+            </select>
+        </div>
+        <div class="form-group" style="width:49%; padding: 10px;display: inline-block">
+            <label for="numberId-other">Numeración</label>
+            <input id="numberId-other" name="numberId-other" type="text" class="form-control" />
+        </div>
+    </div>
+    <!-- inputs de ciudad -->
+
+    <div id="city-other-input" class="mt-4" style="display: none;">
+        <div class="form-group" style="width:49%; padding: 10px;display: inline-block">
+            <label for="city-other">Ciudad</label>
+            <input id="city-other" name="city-other" type="text" class="form-control" />
+        </div>
+        <div class="form-check" style="width:49%; padding: 10px;display: inline-block">
+            <label for="postalCode-other">Código Postal</label>
+            <input id="postalCode-other" name="postalCode-other" type="text" class="form-control" />
+        </div>
+    </div>
+    <!-- inputs de direccion y referencia -->
+    <div id="address-other-input" class="mt-4" style="display: none;">
+        <div class="form-group">
+            <label for="address-other">Dirección</label>
+            <input id="address-other" name="address-other" type="text" class="form-control" />
+        </div>
+    </div>
+    <div id="reference-other-input" class="mt-4" style="display: none;">
+        <div class="form-group">
+            <label for="reference-other">Referencia</label>
+            <input id="reference-other" name="reference-other" type="text" class="form-control" />
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+
+
+        // Oculta todos los campos al inicio del Step 2
+        $(".additional-fields").hide();
+
+        // Step 2
+
+        //cargar ciudades dependiendo de la seleccion de la provincia
+        // Define un objeto que mapea las provincias a las ciudades correspondientes
+        var citiesByProvince = {
+            "Pichincha": ["Quito", "Cayambe", "Santo Domingo"],
+            "Guayas": ["Guayaquil", "Durán", "Samborondón", "Daule", "Milagro", "Naranjal", "Naranjito"]
+        };
+
+        var provincesByCountry = {
+            "Ecuador": ["Imbaura", "Carchi", "Azuay", "Cañar", "Chimborazo", "El Oro", "Esmeraldas", "Galápagos", "Guayas", "Loja", "Los Ríos", "Manabí", "Morona Santiago", "Napo", "Orellana", "Pastaza", "Pichincha", "Santa Elena", "Santo Domingo de los Tsáchilas", "Sucumbíos", "Tungurahua", "Zamora Chinchipe"],
+        };
+
+        var countriesOfWord = {
+            "Colombia": ["Colombia"],
+            "Peru": ["Peru"],
+            "Argentina": ["Argentina"],
+            "Bolivia": ["Bolivia"],
+            "Brasil": ["Brasil"],
+            "Chile": ["Chile"],
+            "Paraguay": ["Paraguay"],
+            "Uruguay": ["Uruguay"],
+            "Venezuela": ["Venezuela"],
+            "Mexico": ["Mexico"],
+            "Estados Unidos": ["Estados Unidos"],
+            "Canada": ["Canada"],
+            "España": ["España"],
+            "Francia": ["Francia"],
+            "Alemania": ["Alemania"],
+            "Italia": ["Italia"],
+            "Portugal": ["Portugal"],
+            "Rusia": ["Rusia"],
+            "China": ["China"],
+            "Japon": ["Japon"],
+            "India": ["India"],
+            "Australia": ["Australia"],
+            "Nueva Zelanda": ["Nueva Zelanda"],
+            "Sudafrica": ["Sudafrica"],
+            "Egipto": ["Egipto"],
+            "Marruecos": ["Marruecos"],
+            "Nigeria": ["Nigeria"],
+            "Kenia": ["Kenia"],
+            "Etiopia": ["Etiopia"],
+            "Sudan": ["Sudan"],
+            "Tanzania": ["Tanzania"],
+            "Uganda": ["Uganda"],
+            "Rwanda": ["Rwanda"],
+            "Burundi": ["Burundi"],
+            "Mozambique": ["Mozambique"],
+            "Madagascar": ["Madagascar"],
+            "Zambia": ["Zambia"],
+            "Zimbabwe": ["Zimbabwe"],
+            "Angola": ["Angola"],
+            "Namibia": ["Namibia"],
+            "Botswana": ["Botswana"],
+            "Mali": ["Mali"],
+            "Senegal": ["Senegal"],
+            "Mauritania": ["Mauritania"],
+            "Mauricio": ["Mauricio"],
+            "Benin": ["Benin"],
+            "Togo": ["Togo"],
+            "Costa de Marfil": ["Costa de Marfil"],
+            "Ghana": ["Ghana"],
+            "Niger": ["Niger"],
+            "Chad": ["Chad"],
+            "Libia": ["Libia"],
+            "Argelia": ["Argelia"],
+            "Tunez": ["Tunez"],
+            "Moldavia": ["Moldavia"],
+            "Ucrania": ["Ucrania"],
+        }
+
+
+
+        // Función para cargar las ciudades en el combo de ciudades
+        function loadCities(province) {
+            var citySelect = $("#city-ec");
+            citySelect.empty(); // Limpiar el combo de ciudades
+
+            if (citiesByProvince.hasOwnProperty(province)) {
+                var cities = citiesByProvince[province];
+                citySelect.append($("<option>").text("Seleccionar ciudad").attr('value', ''))
+
+                $.each(cities, function (index, city) {
+                    citySelect.append($("<option>").text(city));
+                });
+                $("#cities-ec-input").show(); // Mostrar el combo de ciudades
+            } else {
+                $("#cities-ec-input").hide(); // Ocultar el combo de ciudades si no hay provincia seleccionada
+            }
+        }
+
+        function loadProvinces(country) {
+            var provinceSelect = $("#province-ec");
+            provinceSelect.empty(); // Limpiar el combo de ciudades
+
+            if (provincesByCountry.hasOwnProperty(country)) {
+                var provinces = provincesByCountry[country];
+                provinceSelect.append($("<option>").text("Seleccionar provincia").attr('value', ''))
+
+                $.each(provinces, function (index, province) {
+                    provinceSelect.append($("<option>").text(province));
+                });
+                $("#province-ec-input").show(); // Mostrar el combo de ciudades
+            } else {
+                $("#province-ec-input").hide(); // Ocultar el combo de ciudades si no hay provincia seleccionada
+            }
+        }
+
+        function loadCountries() {
+            var countrySelect = $("#country-other");
+            countrySelect.empty(); // Limpiar el combo de ciudades
+
+            if (countriesOfWord) {
+                countrySelect.append($("<option>").text("Seleccionar país").attr('value', ''))
+
+                $.each(countriesOfWord, function (index, country) {
+                    countrySelect.append($("<option>").text(country));
+                });
+                $("#country-other-input").show(); // Mostrar el combo de ciudades
+            } else {
+                $("#country-other-input").hide(); // Ocultar el combo de ciudades si no hay provincia seleccionada
+            }
+        }
+
+        // Escucha el cambio en la selección del país
+        $("input[type=radio][name=country]").change(function () {
+            var selectedCountry = $(this).val();
+
+            // Muestra campos adicionales en base al país seleccionado
+            if (selectedCountry === "Ecuador") {
+                loadProvinces(selectedCountry);
+                $("#fields-ecuador").show();
+                $("#province-ec-input").show();
+                $("#fields-other").hide();
+
+                //limpiar los campos y ocultarlos los campos de fiels-other
+                $("#country-other").val("");
+                $("#country-other").hide;
+                $("#dni-other-input").hide();
+                $("#city-other-input").hide();
+                $("#address-other-input").hide();
+                $("#reference-other-input").hide();
+                $("#typeId-other").val("");
+                $("#numberId-other").val("");
+                $("#city-other").val("");
+                $("#postalCode-other").val("");
+                $("#address-other").val("");
+                $("#reference-other").val("");
+
+
+
+
+            } else {
+                loadCountries();
+                $("#fields-ecuador").hide();
+                $("#country-other-input").show();
+                $("#fields-other").show();
+                $("#province-ec-input").hide();
+                $("#province-ec").val("");
+                $("#city-ec").val("");
+                $("#address-ec").val("");
+                $("#reference-ec").val("");
+
+
+
+
+            }
+        });
+
+        // Escucha el cambio en la selección de provincia
+        $("#province-ec").change(function () {
+            var selectedProvince = $(this).val();
+            // console.log("Provincia seleccionada: " + selectedProvince);
+            $("#address-ec-input").hide();
+            $("#reference-ec-input").hide();
+            //limpiar los campos
+            $("#address-ec").val("");
+            $("#reference-ec").val("");
+
+            loadCities(selectedProvince); // Cargar ciudades según la provincia seleccionada
+        });
+
+        //ahora al seleccionar una ciudad aparecen los camos de address-ec-input y refrence-ec-input
+        $("#city-ec").change(function () {
+            var selectedCity = $(this).val();
+            // console.log("Ciudad seleccionada: " + selectedCity);
+            //not null
+            if (selectedCity != "") {
+                $("#address-ec-input").show();
+                $("#reference-ec-input").show();
+            } else {
+                $("#address-ec-input").hide();
+                $("#reference-ec-input").hide();
+            }
+        });
+
+
+        //vambios para el lado de seleccionar Other
+        //al seleccionar un pais aparecen los campos de dni-other-inpu
+        $("#country-other").change(function () {
+            var selectedCountry = $(this).val();
+            if (selectedCountry != "") {
+                $("#dni-other-input").show();
+            } else {
+                $("#dni-other-input").hide();
+            }
+        });
+
+        //ahora al selecionar un tipo de id y ingresar la numeraciond el id aparecen los campos de city-other-input
+
+        $("#numberId-other").change(function () {
+            var selectedIdType = $(this).val();
+            if (selectedIdType != "") {
+                $("#city-other-input").show();
+            } else {
+                $("#city-other-input").hide();
+            }
+        });
+
+        //ahora al agregar caracteres en city-other y postalCode-other aparezazan los campos de address-other-input y reference-other-input
+        $("#city-other").on('keyup', function () {
+            var cityOther = $(this).val();
+            var validationIcon = $('#city-other-validation-icon');
+            validationIcon.removeClass('valid').addClass('error').html('<i class="fas fa-times"></i>').show();
+
+            // Verifica si la longitud del número ingresado es 10
+            if (cityOther.length >= 3) {
+                validationIcon.removeClass('error').addClass('valid').html('<i class="fas fa-check"></i>').show();
+                $("#address-other-input").show();
+                $("#reference-other-input").show();
+            } else {
+                $("#address-other-input").hide();
+                $("#reference-other-input").hide();
+                validationIcon.removeClass('valid').addClass('error').html('<i class="fas fa-times"></i>').show();
+
+            }
+        });
+
+
+    });
+</script>
