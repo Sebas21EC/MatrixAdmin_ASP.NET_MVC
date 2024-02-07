@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qdLypAL5u/idUAzk0QOBwFUF8yKPNR5RQbxiaZ5RNP8=",
+  "Hash": "+3e9EDgFFhRgRs+g4Cj01aZ/6qOC0IHWNPtFqdqMaak=",
   "Source": "TestMatrixAdmin",
   "BasePath": "_content/TestMatrixAdmin",
   "Mode": "Default",
@@ -7520,6 +7520,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\libs\\flot\\package.json"
+    },
+    {
+      "Identity": "C:\\Users\\sebas\\Escritorio\\TestMatrixAdmin\\TestMatrixAdmin\\wwwroot\\assets\\libs\\flot\\package-lock.json",
+      "SourceId": "TestMatrixAdmin",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\sebas\\Escritorio\\TestMatrixAdmin\\TestMatrixAdmin\\wwwroot\\",
+      "BasePath": "_content/TestMatrixAdmin",
+      "RelativePath": "assets/libs/flot/package-lock.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\libs\\flot\\package-lock.json"
     },
     {
       "Identity": "C:\\Users\\sebas\\Escritorio\\TestMatrixAdmin\\TestMatrixAdmin\\wwwroot\\assets\\libs\\flot\\PLUGINS.md",
@@ -19851,6 +19870,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\app-style-switcher.js"
+    },
+    {
+      "Identity": "C:\\Users\\sebas\\Escritorio\\TestMatrixAdmin\\TestMatrixAdmin\\wwwroot\\js\\commonFunctions.js",
+      "SourceId": "TestMatrixAdmin",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\sebas\\Escritorio\\TestMatrixAdmin\\TestMatrixAdmin\\wwwroot\\",
+      "BasePath": "_content/TestMatrixAdmin",
+      "RelativePath": "js/commonFunctions.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\commonFunctions.js"
     },
     {
       "Identity": "C:\\Users\\sebas\\Escritorio\\TestMatrixAdmin\\TestMatrixAdmin\\wwwroot\\js\\custom.js",

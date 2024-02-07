@@ -245,6 +245,7 @@ C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestM
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestMatrixAdmin.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestMatrixAdmin.RazorAssemblyInfo.cache
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestMatrixAdmin.RazorAssemblyInfo.cs
+C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestMatrixAdmin.sourcelink.json
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\staticwebassets\msbuild.TestMatrixAdmin.Microsoft.AspNetCore.StaticWebAssets.props
@@ -261,4 +262,3 @@ C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\refin
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestMatrixAdmin.pdb
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestMatrixAdmin.genruntimeconfig.cache
 C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\ref\TestMatrixAdmin.dll
-C:\Users\sebas\Escritorio\TestMatrixAdmin\TestMatrixAdmin\obj\Debug\net7.0\TestMatrixAdmin.sourcelink.json

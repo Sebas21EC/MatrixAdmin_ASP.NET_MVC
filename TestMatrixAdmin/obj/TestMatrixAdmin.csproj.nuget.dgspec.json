@@ -76,6 +76,14 @@
             "Microsoft.jQuery.Unobtrusive.Validation": {
               "target": "Package",
               "version": "[4.0.0, )"
+            },
+            "jQuery": {
+              "target": "Package",
+              "version": "[3.7.1, )"
+            },
+            "jQuery.Validation": {
+              "target": "Package",
+              "version": "[1.19.5, )"
             }
           },
           "imports": [

@@ -111,13 +111,8 @@
     $(function () {
 
 
-        // Oculta todos los campos al inicio del Step 2
         $(".additional-fields").hide();
 
-        // Step 2
-
-        //cargar ciudades dependiendo de la seleccion de la provincia
-        // Define un objeto que mapea las provincias a las ciudades correspondientes
         var citiesByProvince = {
             "Pichincha": ["Quito", "Cayambe", "Santo Domingo"],
             "Guayas": ["Guayaquil", "Durán", "Samborondón", "Daule", "Milagro", "Naranjal", "Naranjito"]
@@ -188,10 +183,9 @@
 
 
 
-        // Función para cargar las ciudades en el combo de ciudades
         function loadCities(province) {
             var citySelect = $("#city-ec");
-            citySelect.empty(); // Limpiar el combo de ciudades
+            citySelect.empty(); 
 
             if (citiesByProvince.hasOwnProperty(province)) {
                 var cities = citiesByProvince[province];
@@ -200,15 +194,15 @@
                 $.each(cities, function (index, city) {
                     citySelect.append($("<option>").text(city));
                 });
-                $("#cities-ec-input").show(); // Mostrar el combo de ciudades
+                $("#cities-ec-input").show(); 
             } else {
-                $("#cities-ec-input").hide(); // Ocultar el combo de ciudades si no hay provincia seleccionada
+                $("#cities-ec-input").hide(); 
             }
         }
 
         function loadProvinces(country) {
             var provinceSelect = $("#province-ec");
-            provinceSelect.empty(); // Limpiar el combo de ciudades
+            provinceSelect.empty(); 
 
             if (provincesByCountry.hasOwnProperty(country)) {
                 var provinces = provincesByCountry[country];
@@ -217,15 +211,15 @@
                 $.each(provinces, function (index, province) {
                     provinceSelect.append($("<option>").text(province));
                 });
-                $("#province-ec-input").show(); // Mostrar el combo de ciudades
+                $("#province-ec-input").show(); 
             } else {
-                $("#province-ec-input").hide(); // Ocultar el combo de ciudades si no hay provincia seleccionada
+                $("#province-ec-input").hide();
             }
         }
 
         function loadCountries() {
             var countrySelect = $("#country-other");
-            countrySelect.empty(); // Limpiar el combo de ciudades
+            countrySelect.empty(); 
 
             if (countriesOfWord) {
                 countrySelect.append($("<option>").text("Seleccionar país").attr('value', ''))
@@ -233,24 +227,20 @@
                 $.each(countriesOfWord, function (index, country) {
                     countrySelect.append($("<option>").text(country));
                 });
-                $("#country-other-input").show(); // Mostrar el combo de ciudades
+                $("#country-other-input").show();
             } else {
-                $("#country-other-input").hide(); // Ocultar el combo de ciudades si no hay provincia seleccionada
-            }
+                $("#country-other-input").hide(); 
         }
 
-        // Escucha el cambio en la selección del país
         $("input[type=radio][name=country]").change(function () {
             var selectedCountry = $(this).val();
 
-            // Muestra campos adicionales en base al país seleccionado
             if (selectedCountry === "Ecuador") {
                 loadProvinces(selectedCountry);
                 $("#fields-ecuador").show();
                 $("#province-ec-input").show();
                 $("#fields-other").hide();
 
-                //limpiar los campos y ocultarlos los campos de fiels-other
                 $("#country-other").val("");
                 $("#country-other").hide;
                 $("#dni-other-input").hide();
@@ -284,24 +274,20 @@
             }
         });
 
-        // Escucha el cambio en la selección de provincia
         $("#province-ec").change(function () {
             var selectedProvince = $(this).val();
-            // console.log("Provincia seleccionada: " + selectedProvince);
             $("#address-ec-input").hide();
             $("#reference-ec-input").hide();
-            //limpiar los campos
+
             $("#address-ec").val("");
             $("#reference-ec").val("");
 
-            loadCities(selectedProvince); // Cargar ciudades según la provincia seleccionada
+            loadCities(selectedProvince); 
         });
 
-        //ahora al seleccionar una ciudad aparecen los camos de address-ec-input y refrence-ec-input
         $("#city-ec").change(function () {
             var selectedCity = $(this).val();
-            // console.log("Ciudad seleccionada: " + selectedCity);
-            //not null
+
             if (selectedCity != "") {
                 $("#address-ec-input").show();
                 $("#reference-ec-input").show();
@@ -312,8 +298,6 @@
         });
 
 
-        //vambios para el lado de seleccionar Other
-        //al seleccionar un pais aparecen los campos de dni-other-inpu
         $("#country-other").change(function () {
             var selectedCountry = $(this).val();
             if (selectedCountry != "") {
@@ -323,7 +307,6 @@
             }
         });
 
-        //ahora al selecionar un tipo de id y ingresar la numeraciond el id aparecen los campos de city-other-input
 
         $("#numberId-other").change(function () {
             var selectedIdType = $(this).val();
@@ -334,13 +317,11 @@
             }
         });
 
-        //ahora al agregar caracteres en city-other y postalCode-other aparezazan los campos de address-other-input y reference-other-input
         $("#city-other").on('keyup', function () {
             var cityOther = $(this).val();
             var validationIcon = $('#city-other-validation-icon');
             validationIcon.removeClass('valid').addClass('error').html('<i class="fas fa-times"></i>').show();
 
-            // Verifica si la longitud del número ingresado es 10
             if (cityOther.length >= 3) {
                 validationIcon.removeClass('error').addClass('valid').html('<i class="fas fa-check"></i>').show();
                 $("#address-other-input").show();

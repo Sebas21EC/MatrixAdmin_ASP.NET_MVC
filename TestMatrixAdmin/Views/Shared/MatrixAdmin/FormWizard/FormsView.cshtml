@@ -3,66 +3,135 @@
     Layout = "~/Views/Shared/MatrixAdmin/_Layout.cshtml";
 }
 
-@* agregar css *@
 <link href="~/css/FormWizard.css" rel="stylesheet" type="text/css" />
 <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
 
-
 <h2>Form Wizard</h2>
+<!-- Botón Start fuera del formulario del asistente -->
+<button type="button" class="btn btn-primary" id="btn-start">Start</button>
 
-@await Html.PartialAsync("MatrixAdmin/FormWizard/_FormWizard")
+<!-- Contenedor para la vista parcial que se cargará -->
+
+<div id="error-container" class="alert alert-danger" style="display:none">
+    @* <ul id="error-list"></ul> *@
+</div>
+
+<div id="form-content-container"></div>
 
 
+<!-- Scripts -->
 @section scripts {
-    <!-- this page js -->
     <script src="~/assets/libs/jquery-steps/build/jquery.steps.min.js"></script>
-    @* <script src="~/assets/libs/jquery-validation/dist/jquery.validate.min.js"></script> *@
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
 
     <script>
-        // Basic Example with form
-        var form = $("#example-form");
-        form.children("div").steps({
-            headerTag: "h3",
-            bodyTag: "section",
-            transitionEffect: "slideLeft",
-            onStepChanging: function (event, currentIndex, newIndex) {
-                form.validate().settings.ignore = ":disabled,:hidden";
-                return form.valid();
-            },
-            onFinishing: function (event, currentIndex) {
-                form.validate().settings.ignore = ":disabled";
-                return form.valid();
-            },
-            onFinished: function (event, currentIndex) {
-                alert("Submitted!");
-            }
+        $("#btn-start").click(function () {
+            $.ajax({
+                url: '@Url.Action("FormWizardPartial", "AdminMatrix")', 
+                type: 'GET',
+                success: function (data) {
+                    $("#form-content-container").html(data);
+                    $("#btn-start").hide();
+                    initializeFormSteps();
+                },
+                error: function (xhr, status, error) {
+                    alert("Error al cargar la sección: " + error);
+                }
+            });
         });
 
-        var form = $("#example-form");
-        var nextButton = form.find("a[href='#next']");
-        var originalHref = nextButton.attr('href');
-
-
-        //funcion que recibe un valor booleano y habilita o deshabilita el boton
-        function enableNextButton(enable) {
-            if (enable) {
-                nextButton.removeClass("disabled");
-                nextButton.attr('href', originalHref); // Restablecer el href para habilitar el enlace
-                nextButton.css('cursor', ''); // Restablecer el cursor si fue cambiado
-            } else {
-                nextButton.addClass("disabled");
-                nextButton.removeAttr('href'); // Quitar el href para deshabilitar el enlace
-                nextButton.css('cursor', 'not-allowed'); // Cambiar el cursor a 'no permitido'
+        function getUrlForSection(currentIndex) {
+            switch (currentIndex) {
+                case 0:
+                    return '@Url.Action("SubmitSection1", "AdminMatrix")';
+                case 1:
+                    return '@Url.Action("SubmitSection2", "AdminMatrix")';
+                case 2:
+                    return '@Url.Action("SubmitSection3", "AdminMatrix")';
+                default:
+                    console.error("Índice de sección no reconocido:", currentIndex);
+                    return null; 
             }
         }
 
-        enableNextButton(false); // Inicialmente deshabilitado
+        function initializeFormSteps() {
+            var form = $("#example-form");
+            form.children("div").steps({
+                headerTag: "h3",
+                bodyTag: "section",
+                transitionEffect: "slideLeft",
+                onStepChanging: function (event, currentIndex, newIndex) {
+                    var isValid = true; 
+                    if (currentIndex < newIndex) {
+                        var formData = $("#example-form").serialize();
+                        var url = getUrlForSection(currentIndex);
+
+                        if (url) {
+                            $.ajax({
+                                url: url,
+                                type: 'POST',
+                                data: formData,
+                                async: false, 
+                                success: function (response) {
+                                    if (response.success) {
+                                        $("#error-container").hide();
+                                        alert("Sección " + (currentIndex + 1) + " completada con éxito");
+                                        isValid = true;
+                                    } else {
+                                        displayValidationErrors(response.errors);
+                                        isValid = false;
+                                    }
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error("Error en la solicitud: ", status, error);
+                                    isValid = false;
+                                }
+                            });
+                        } else {
+                            isValid = false;
+                        }
+                    }
+
+                    return isValid;
+                },
+
+                onFinishing: function (event, currentIndex) {
+                    form.validate().settings.ignore = ":disabled";
+                    return form.valid();
+                },
+                onFinished: function (event, currentIndex) {
+                    alert("Submitted!");
+                }
+            });
+        }
+
+        initializeFormSteps();
+
+        function enableNextButton(enable) {
+            var nextButton = $("#example-form").find("a[href='#next']");
+            var originalHref = nextButton.attr('href');
+
+            if (enable) {
+                nextButton.removeClass("disabled");
+                nextButton.attr('href', originalHref);
+                nextButton.css('cursor', '');
+            } else {
+                nextButton.addClass("disabled");
+                nextButton.removeAttr('href');
+                nextButton.css('cursor', 'not-allowed');
+            }
+        }
+        enableNextButton(false);
+
+
+        function displayValidationErrors(errors) {
+            $("#error-container").empty();
+            errors.forEach(function (error) {
+                $("#error-container").append($('<div/>').text(error));
+            });
+            $("#error-container").show();
+        }
 
 
     </script>
-
-
-
 }

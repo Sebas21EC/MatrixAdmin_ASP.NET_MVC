@@ -3,13 +3,11 @@
 *@
 
 
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+
+
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
@@ -20,10 +18,9 @@
         <form id="example-form" action="#" class="mt-6">
             <div>
                 <h3>1</h3>
-                <section>
 
+                <section id="section1-container">
                     @await Html.PartialAsync("MatrixAdmin/FormWizard/Section1/_Section1")
-
                 </section>
                 <h3>2</h3>
                 <section>
@@ -48,7 +45,7 @@
 </div>
 
 
-<script>
-
-
-</script>
+<!-- ============================================================== -->
+<!-- End Page Content -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->

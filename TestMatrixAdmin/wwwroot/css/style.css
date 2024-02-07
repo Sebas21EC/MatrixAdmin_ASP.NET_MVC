@@ -6,6 +6,9 @@
 @import url(icons/material-design-iconic-font/css/materialdesignicons.min.css);
 
 
+#example-form > div > section {
+    display: none;
+}
 
 
 

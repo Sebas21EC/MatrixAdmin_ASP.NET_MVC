@@ -7,12 +7,12 @@
     <label>Celular o correo registrado en el Banco</label>
     <div class="form-check">
         @* <input class="form-check-input" type="radio" name="contactOption" id="phoneOption" value="phone"> *@
-        @Html.RadioButtonFor(mbox => mbox.ContactOption, true, new { @class = "form-check-input", @name = "ContactOption", @value = "phone", @type = "radio" })
+        @Html.RadioButtonFor(m => m.ContactOption, "phone", new { id = "phoneOption", @class = "form-check-input" })
         <label class="form-check-label" for="phoneOption">Celular</label>
     </div>
     <div class="form-check">
         @* <input class="form-check-input" type="radio" name="contactOption" id="emailOption" value="email"> *@
-        @Html.RadioButtonFor(mbox => mbox.ContactOption, false, new { @class = "form-check-input", @name = "ContactOption", @value = "email", @type = "radio" })
+        @Html.RadioButtonFor(m => m.ContactOption, "email", new { id = "emailOption", @class = "form-check-input" })
         <label class="form-check-label" for="emailOption">Correo electrónico</label>
     </div>
     @Html.ValidationMessageFor(m => m.ContactOption, "", new { @class = "text-danger" })
@@ -23,7 +23,7 @@
     <div class="form-group">
         <label for="phoneNumber" class="control-label">Ingresa tu número celular</label>
         @* <input id="phoneNumber" name="phoneNumber" type="text" class="form-control"> *@
-        @Html.TextBoxFor(mbox => mbox.PhoneNumber, new { @class = "form-control" })
+        @Html.TextBoxFor(mbox => mbox.PhoneNumber, new { id = "phone", @class = "form-control" })
         @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
 
     </div>
@@ -34,39 +34,38 @@
     <div class="form-group">
         <label for="email" class="control-label">Ingresa tu correo electrónico</label>
         @* <input id="email" name="email" type="email" class="form-control"> *@
-        @Html.TextBoxFor(mbox => mbox.Email, new { @class = "form-control" })
+        @Html.TextBoxFor(mbox => mbox.Email, new { id = "email", @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
         <label for="emailConfirm" class="control-label">Confirma tu correo electrónico</label>
         @* <input id="emailConfirm" name="emailConfirm" type="email" class="form-control"> *@
-        @Html.TextBoxFor(mbox => mbox.EmailConfirm, new { @class = "form-control" })
+        @Html.TextBoxFor(mbox => mbox.EmailConfirm, new { id = "emailConfirm", @class = "form-control" })
         @Html.ValidationMessageFor(m => m.EmailConfirm, "", new { @class = "text-danger" })
     </div>
 </div>
 
+
 <script>
 
     $(function () {
-
-        // Mostrar campos en base a la selección del radio button
+        console.log("Ingresa a registered user");
         $('input[type=radio][name=ContactOption]').change(function () {
+
             if ($(this).val() === 'phone') {
                 $('#email-inputs').hide();
                 $('#phone-input').show();
-                // Limpiar los campos de correo electrónico
                 $('input[name="Email"]').val('');
                 $('input[name="EmailConfirm"]').val('');
+
             }
             else if ($(this).val() === 'email') {
                 $('#phone-input').hide();
                 $('#email-inputs').show();
-                // Limpiar el campo de teléfono
                 $('input[name="PhoneNumber"]').val('');
             }
         });
 
-        // Disparar el cambio al cargar la página si hay un botón seleccionado
         $('input[type=radio][name=ContactOption]:checked').change();
 
 
