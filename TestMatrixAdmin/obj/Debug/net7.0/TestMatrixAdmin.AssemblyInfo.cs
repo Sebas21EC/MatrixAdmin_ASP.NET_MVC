@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestMatrixAdmin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6fb6d949cf346380fa62fcf9e98c4a0c666d5b54")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestMatrixAdmin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestMatrixAdmin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

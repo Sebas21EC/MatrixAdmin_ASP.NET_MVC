@@ -1,0 +1,95 @@
+﻿@model TestMatrixAdmin.Models.Section1
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "example-form", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h3>¡Empecemos! Ingresa tus datos</h3>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.IdNumber, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.IdNumber, new { @class = "form-control", @maxlength = "10" })
+        @Html.ValidationMessageFor(m => m.IdNumber, "", new { @class = "text-danger" })
+
+        <!-- Icono de validación -->
+        <div id="id-validation-icon"></div>
+    </div>
+
+    <!-- Este div contendrá las vistas parciales cargadas dinámicamente -->
+    <div id="content-section-1" class="mt-4"></div>
+
+
+}
+
+<script>
+    $(function () {
+        $('#IdNumber').on('keyup', function () {
+            var idNumber = $(this).val();
+            var validationIcon = $('#id-validation-icon');
+
+            if (idNumber.length === 10) {
+                validationIcon.removeClass('error').addClass('valid').html('<i class="fas fa-check"></i>');
+
+                // Llamada AJAX para verificar la cédula y cargar la vista parcial correspondiente
+                $.ajax({
+                    url: '@Url.Action("CheckCedula", "AdminMatrix")',
+                    type: 'POST',
+                    data: { cedula: idNumber },
+                    success: function (response) {
+                        if (response.isUserRegistered) {
+                            loadRegisteredUserSection();
+                        } else {
+                            loadNewUserSection();
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error al verificar la cédula: ", status, error);
+                        validationIcon.removeClass('valid').addClass('error').html('<i class="fas fa-times"></i>');
+                    }
+                });
+            } else {
+                validationIcon.removeClass('valid').addClass('error').html('<i class="fas fa-times"></i>');
+            }
+        });
+    });
+
+
+    function loadRegisteredUserSection() {
+        $.ajax({
+            url: '@Url.Action("RegisteredUserPartial", "AdminMatrix")', // Asegúrate de que la URL es correcta
+            type: 'GET',
+            success: function (data) {
+                var container = $('#content-section-1');
+                container.html(data);
+                // Vuelve a aplicar la validación a los nuevos elementos
+                reapplyValidation();
+            }
+        });
+    }
+
+    function loadNewUserSection() {
+        $.ajax({
+            url: '@Url.Action("NewUserPartial", "AdminMatrix")', // Asegúrate de que la URL es correcta
+            type: 'GET',
+            success: function (data) {
+                var container = $('#content-section-1');
+                container.html(data);
+                // Vuelve a aplicar la validación a los nuevos elementos
+                reapplyValidation();
+            }
+        });
+    }
+
+    function reapplyValidation() {
+        var form = $("#example-form");
+        if (form.length) {
+            form.removeData("validator");
+            form.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+        }
+    }
+
+
+
+</script>
