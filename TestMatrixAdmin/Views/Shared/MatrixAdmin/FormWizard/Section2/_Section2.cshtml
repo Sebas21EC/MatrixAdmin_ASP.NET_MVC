@@ -185,24 +185,25 @@
 
         function loadCities(province) {
             var citySelect = $("#city-ec");
-            citySelect.empty(); 
+            citySelect.empty();
 
             if (citiesByProvince.hasOwnProperty(province)) {
                 var cities = citiesByProvince[province];
+
                 citySelect.append($("<option>").text("Seleccionar ciudad").attr('value', ''))
 
                 $.each(cities, function (index, city) {
                     citySelect.append($("<option>").text(city));
                 });
-                $("#cities-ec-input").show(); 
+                $("#cities-ec-input").show();
             } else {
-                $("#cities-ec-input").hide(); 
+                $("#cities-ec-input").hide();
             }
         }
 
         function loadProvinces(country) {
             var provinceSelect = $("#province-ec");
-            provinceSelect.empty(); 
+            provinceSelect.empty();
 
             if (provincesByCountry.hasOwnProperty(country)) {
                 var provinces = provincesByCountry[country];
@@ -211,7 +212,7 @@
                 $.each(provinces, function (index, province) {
                     provinceSelect.append($("<option>").text(province));
                 });
-                $("#province-ec-input").show(); 
+                $("#province-ec-input").show();
             } else {
                 $("#province-ec-input").hide();
             }
@@ -219,7 +220,7 @@
 
         function loadCountries() {
             var countrySelect = $("#country-other");
-            countrySelect.empty(); 
+            countrySelect.empty();
 
             if (countriesOfWord) {
                 countrySelect.append($("<option>").text("Seleccionar país").attr('value', ''))
@@ -229,17 +230,23 @@
                 });
                 $("#country-other-input").show();
             } else {
-                $("#country-other-input").hide(); 
+                $("#country-other-input").hide();
+            }
         }
 
         $("input[type=radio][name=country]").change(function () {
             var selectedCountry = $(this).val();
 
             if (selectedCountry === "Ecuador") {
+
+                console.log("Cargando provincias de Ecuador..."); // Para depuración
+
                 loadProvinces(selectedCountry);
                 $("#fields-ecuador").show();
                 $("#province-ec-input").show();
                 $("#fields-other").hide();
+                //mostrar ciudades
+                // $("#cities-ec-input").show();
 
                 $("#country-other").val("");
                 $("#country-other").hide;
@@ -255,10 +262,9 @@
                 $("#reference-other").val("");
 
 
-
-
             } else {
                 loadCountries();
+                console.log("Cargando paises del mundo..."); // Para depuración
                 $("#fields-ecuador").hide();
                 $("#country-other-input").show();
                 $("#fields-other").show();
@@ -268,21 +274,27 @@
                 $("#address-ec").val("");
                 $("#reference-ec").val("");
 
-
-
-
             }
         });
 
         $("#province-ec").change(function () {
             var selectedProvince = $(this).val();
+            console.log("Provincia seleccionada: ", selectedProvince); // Para depuración
+            if (selectedProvince != "") {
+                loadCities(selectedProvince);
+                $("#cities-ec-input").show();
+
+            } else {
+                $("#cities-ec-input").hide();
+            }
+
             $("#address-ec-input").hide();
             $("#reference-ec-input").hide();
 
             $("#address-ec").val("");
             $("#reference-ec").val("");
 
-            loadCities(selectedProvince); 
+            // loadCities(selectedProvince);
         });
 
         $("#city-ec").change(function () {
@@ -334,6 +346,6 @@
             }
         });
 
-
     });
+
 </script>

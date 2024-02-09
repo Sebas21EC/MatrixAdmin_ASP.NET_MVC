@@ -17,7 +17,6 @@ namespace TestMatrixAdmin.Controllers
             return View("MatrixAdmin/FormWizard/FormsView");
         }
 
-        // Método para manejar la presentación del formulario
         [HttpPost]
         public IActionResult SubmitForm(Section1 model)
         {
@@ -30,9 +29,14 @@ namespace TestMatrixAdmin.Controllers
             return View("Index", model);
         }
 
+
+
         [HttpPost]
-        public async Task<IActionResult> SubmitSection1(Section1 model)
+        public IActionResult SubmitSection1(Section1 model)
         {
+            bool isRegisteredUser = CheckIfUserIsRegistered(model.IdNumber);
+            model.IsRegisteredUser = isRegisteredUser;
+
             if (ModelState.IsValid)
             {
                 return Json(new { success = true });
@@ -40,10 +44,17 @@ namespace TestMatrixAdmin.Controllers
             else
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors)
-                                    .Select(e => e.ErrorMessage).ToList();
+                                        .Select(e => e.ErrorMessage).ToList();
                 return Json(new { success = false, errors = errors });
             }
         }
+
+        private bool CheckIfUserIsRegistered(string idNumber)
+        {
+
+            return idNumber == "1111111111";
+        }
+
 
 
 
@@ -54,8 +65,7 @@ namespace TestMatrixAdmin.Controllers
 
         public IActionResult Section1()
         {
-            var modelo = new Section1();
-            return PartialView("MatrixAdmin/FormWizard/Section1/_Section1", modelo);
+            return PartialView("MatrixAdmin/FormWizard/Section1/_Section1");
         }
 
 
@@ -65,28 +75,37 @@ namespace TestMatrixAdmin.Controllers
             return PartialView("MatrixAdmin/FormWizard/_FormWizard");
         }
 
-        //new user partial
+        // New user partial
         public IActionResult NewUserPartial()
         {
-            var modelo = new Section1();
+            var isRegisteredUser = TempData["IsRegisteredUser"] as bool? ?? false;
+            var model = new Section1
+            {
+                IsRegisteredUser = isRegisteredUser
+            };
 
-            return PartialView("MatrixAdmin/FormWizard/Section1/_NewUser", modelo);
+            return PartialView("MatrixAdmin/FormWizard/Section1/_NewUser", model);
         }
 
-        //registered user partial
+        // Registered user partial
         public IActionResult RegisteredUserPartial()
         {
-            var modelo = new Section1();
+            var isRegisteredUser = TempData["IsRegisteredUser"] as bool? ?? false;
+            var model = new Section1
+            {
+                IsRegisteredUser = isRegisteredUser
+            };
 
-            return PartialView("MatrixAdmin/FormWizard/Section1/_RegisteredUser", modelo);
+            return PartialView("MatrixAdmin/FormWizard/Section1/_RegisteredUser", model);
         }
+
 
         [HttpPost]
         public JsonResult CheckCedula(string cedula)
         {
             // Verifica si la cédula ingresada es igual a "1111111111"
             bool isUserRegistered = cedula == "1111111111";
-
+            TempData["IsRegisteredUser"] = isUserRegistered; 
             return Json(new { isUserRegistered = isUserRegistered });
         }
 

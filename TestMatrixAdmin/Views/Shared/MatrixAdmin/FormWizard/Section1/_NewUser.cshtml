@@ -59,14 +59,11 @@
 
     $(function () {
         $('input[type=radio][name=ContactOption]').change(function () {
-
             if ($(this).val() === 'phone') {
                 $('#email-inputs').hide();
                 $('#phone-input').show();
                 $('input[name="Email"]').val('');
                 $('input[name="EmailConfirm"]').val('');
-
-
             }
             else if ($(this).val() === 'email') {
                 $('#phone-input').hide();
@@ -76,8 +73,6 @@
         });
 
         $('input[type=radio][name=ContactOption]:checked').change();
-
-
     });
 
 
