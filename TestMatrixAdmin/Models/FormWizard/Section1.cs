@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 
 namespace TestMatrixAdmin.Models
@@ -13,13 +14,16 @@ namespace TestMatrixAdmin.Models
         [Required(ErrorMessage = "Please enter select one option")]
         public string? ContactOption { get; set; }
 
-        [Required(ErrorMessage = "Please enter your figer print code!")]
-        [RegularExpression(@"^[a-zA-Z0-9]{10}$", ErrorMessage = "Please enter a valid figer print code")]
+        //[Required(ErrorMessage = "Please enter your figer print code!")]
+        //[RegularExpression(@"^[a-zA-Z0-9]{10}$", ErrorMessage = "Please enter a valid figer print code")]
         public string? FingerprintCode { get; set; }
+
+        public bool IsRegisteredUser { get; set; }
+
 
         //[Required(ErrorMessage = "Please enter your phone number")
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Please enter a valid phone number")]
-        public string? PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; } 
 
         //[Required(ErrorMessage = "Please enter your email address")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address")]
@@ -51,9 +55,22 @@ namespace TestMatrixAdmin.Models
             }
             else
             {
-                // Opción para cuando no se selecciona ninguna opción de contacto
                 yield return new ValidationResult("Please select a contact option.", new[] { nameof(ContactOption) });
             }
+
+            if (!IsRegisteredUser)
+            {
+                if (string.IsNullOrWhiteSpace(FingerprintCode))
+                {
+                    yield return new ValidationResult("Please enter your fingerprint code!", new[] { nameof(FingerprintCode) });
+                }
+                else if (!Regex.IsMatch(FingerprintCode, @"^[a-zA-Z0-9]{10}$"))
+                {
+                    yield return new ValidationResult("Please enter a valid fingerprint code", new[] { nameof(FingerprintCode) });
+                }
+            }
+
+
         }
 
     }

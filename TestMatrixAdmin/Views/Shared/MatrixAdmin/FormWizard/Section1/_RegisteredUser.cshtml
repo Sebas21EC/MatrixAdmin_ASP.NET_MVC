@@ -18,6 +18,9 @@
     @Html.ValidationMessageFor(m => m.ContactOption, "", new { @class = "text-danger" })
 </div>
 
+@Html.HiddenFor(model => model.IsRegisteredUser)
+
+
 <!-- Entrada para teléfono -->
 <div id="phone-input" class="mt-4" style="display: none;">
     <div class="form-group">
@@ -49,7 +52,6 @@
 <script>
 
     $(function () {
-        console.log("Ingresa a registered user");
         $('input[type=radio][name=ContactOption]').change(function () {
 
             if ($(this).val() === 'phone') {
@@ -65,9 +67,7 @@
                 $('input[name="PhoneNumber"]').val('');
             }
         });
-
         $('input[type=radio][name=ContactOption]:checked').change();
-
-
     });
+
 </script>
